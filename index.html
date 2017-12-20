@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="angular.js"></script>
+
+<style type="text/css">
+	
+	.grid tr{
+		width: 50px;
+	}
+
+	.grid td{
+		width: 50px;
+		border: solid 1px grey;
+		height: 50px;
+	}
+	.grid td.blocked{
+		background-color: black;
+	}
+	.grid td.path{
+		background-color: blue;
+	}
+	.grid td.start{
+		background-color: green;
+	}
+	.grid td.end{
+		background-color: red;
+	}
+	.grid td.visited{
+		background-color: yellow;
+	}
+	.error{
+		color: red;
+	}
+</style>
+
+<body ng-app="test" ng-controller="myCtrl">
+
+<table>
+	<tr>
+		<td><input type="button" name="" value="Start" ng-click="ButtonAction = 'Start';"/></td>
+		<td><input type="button" name="" value="End" ng-click="ButtonAction = 'End';"/></td>
+		<td><input type="button" name="" value="Go" ng-click="Go()"/></td>
+	</tr>
+</table>
+
+<table class="grid">
+	<tr ng-repeat="r in Grid">{{r}}
+		<td ng-repeat="c in r" ng-click="ToggleWall(c)" ng-class="{'blocked':c.Blocked,'path':c.Path, 'start': StartButton.row==c.row && StartButton.col==c.col, 'end': EndButton.row==c.row && EndButton.col==c.col, 'visited': c.Visited}"> {{c.val}} </td>
+	</tr>
+</table>
+<div class="error"> {{Message}}</div>
+
+
+</body>
+</html>
